@@ -23,7 +23,7 @@ class RoomList extends Component{
   }
 
   createRoom(roomName){
-    console.log(roomName);
+    this.roomsRef.push({ name: roomName });
 
   }
 
