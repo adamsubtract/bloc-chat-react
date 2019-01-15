@@ -3,6 +3,7 @@ import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList.js';
 
+
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCQeuwe9U5ruVQoPWTkN-VxfiwCPsPoc0I",
@@ -13,8 +14,6 @@ import RoomList from './components/RoomList.js';
     messagingSenderId: "929590754097"
   };
   firebase.initializeApp(config);
-
-
 
 class App extends Component {
   render() {
