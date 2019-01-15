@@ -22,9 +22,9 @@ class RoomList extends Component{
       });
   }
 
-  createRoom(e){
-    e.preventDefault();
-    this.roomsRef.push({ name: e.target.value });
+  createRoom(roomName){
+    console.log(roomName);
+
   }
 
   handleChange(e){
@@ -43,12 +43,16 @@ class RoomList extends Component{
           }
           </ul>
 
-          //chat button
-            <form className='create-room' onSubmit={(e) => this.createRoom(e)}>
+          //form
+            <form className='create-room'
+                  onSubmit={(e) =>
+                  { e.preventDefault();
+                  this.createRoom(this.state.name) }}
+            >
               <h3>Creat chatroom</h3>
+              //chat button
               <input type='text'
                 placeholder='room name'
-                value={this.state.name}
                 onChange={(e) => this.handleChange(e)}>
               </input>
                 <input type='submit' value="create"></input>
