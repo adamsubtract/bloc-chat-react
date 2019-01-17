@@ -14,9 +14,8 @@ var config = {
   storageBucket: "chatroom-d73c6.appspot.com",
   messagingSenderId: "929590754097"
 };
-
 firebase.initializeApp(config);
-const provider = new this.props.firebase.auth.GoogleAuthProvider();
+
 
 class App extends Component {
   constructor(props){

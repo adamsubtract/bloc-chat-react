@@ -7,7 +7,6 @@ class MessageList extends Component{
       this.state = {
          //init our state with an empty array so that later we can push things to it
          messages: [],
-
        };
 
         // Set up our Reference to our messages Table in Firebase
@@ -29,7 +28,7 @@ class MessageList extends Component{
       return(
         <div>
          <ul>
-             { this.state.messages.filter(message => message.roomid == this.props.activeRoom.key).map( (message, index) =>
+             { this.state.messages.filter(message => message.roomid === this.props.activeRoom.key).map( (message, index) =>
                    <li className='message' key={index}>
                        {message.content}
                    </li>
