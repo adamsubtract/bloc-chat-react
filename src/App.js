@@ -29,13 +29,14 @@ class App extends Component {
   }
 
   setActiveRoom(room){
-    this.setState({ activeRoom: room});
     console.log(this.state.activeRoom);
+    this.setState({ activeRoom: room});
   }
 
   render() {
     return (
       <div className="App">
+      <h3>Room {this.state.activeRoom}</h3>
         <RoomList
         firebase={firebase}
         activeRoom={this.state.activeRoom}
