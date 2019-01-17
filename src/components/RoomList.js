@@ -38,14 +38,13 @@ class RoomList extends Component{
 
               <form className='create-room'
                 onSubmit={(e) =>
-                { e.preventDefault(); this.createRoom(this.state.name) }}
-              >
+                { e.preventDefault(); this.createRoom(this.state.name) }}>
               <h3>Creat chatroom</h3>
                 <input type='text'
                   placeholder='room name'
                   onChange={(e) => this.handleChange(e)}>
                 </input>
-                <input type='submit' value="create"></input>
+                  <input type='submit' value="create"></input>
               </form>
 
 

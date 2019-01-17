@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList.js';
-import MessageList from './components/MessageList';
+import MessageList from './components/MessageList.js';
+import User from './components/User.js';
 
 // Initialize Firebase
 var config = {
@@ -15,15 +16,14 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
-
+const provider = new this.props.firebase.auth.GoogleAuthProvider();
 
 class App extends Component {
   constructor(props){
     super(props);
 
     this.state = {
-      activeRoom: null
+      activeRoom: ''
     };
 
   }
@@ -40,13 +40,13 @@ class App extends Component {
         <RoomList
         firebase={firebase}
         activeRoom={this.state.activeRoom}
-        setActiveRoom={(e) => this.setActiveRoom(e)}
-        />
+        setActiveRoom={(e) => this.setActiveRoom(e)}/>
 
         <MessageList
         firebase={firebase}
-        activeRoom={this.state.activeRoom}
-        />
+        activeRoom={this.state.activeRoom}/>
+
+        <User firebase={firebase}/>
       </div>
     );
   }
