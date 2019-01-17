@@ -36,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h3>Room {this.state.activeRoom}</h3>
+      <h3>{this.state.activeRoom ? this.state.activeRoom.name : ''}</h3>
         <RoomList
         firebase={firebase}
         activeRoom={this.state.activeRoom}

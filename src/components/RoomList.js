@@ -33,7 +33,7 @@ class RoomList extends Component{
 
   render() {
     return (
-          //list of rooms
+
           <div className="App">
 
               <form className='create-room'
@@ -48,20 +48,16 @@ class RoomList extends Component{
                 <input type='submit' value="create"></input>
               </form>
 
-          <ul>
+
           { this.state.rooms.map( (room, index) =>
-            <a
-                className='room'
-                key= { room.key }
-                onClick = {
-                     (key) => this.props.setActiveRoom(room)
-                }
-                href="#">
-                 <h3>{ room.name }</h3>
-          </a>
-          )
-        }
-          </ul>
+            <li className='room'
+                key={index}
+                onClick={() => this.props.setActiveRoom(room)}
+            >
+            {room.name}
+            </li>)
+          }
+          
           </div>
     );
   }
