@@ -35,30 +35,30 @@ class RoomList extends Component{
     return (
           //list of rooms
           <div className="App">
+          <div className="chat-box">
+          <form className='create-room'
+                onSubmit={(e) =>
+                { e.preventDefault(); this.createRoom(this.state.name) }}
+          >
+            <h3>Creat chatroom</h3>
+
+              <input type='text'
+                placeholder='room name'
+                onChange={(e) => this.handleChange(e)}>
+                </input>
+                  <input type='submit' value="create"></input>
+          </form>
+          </div>
           <ul>
           { this.state.rooms.map( (room, index) =>
-            <li className='room' key={index}>
+            <li className='room'
+                key={index}
+                onClick={() => this.props.setActiveRoom(room)}
+            >
             {room.name}
             </li>)
           }
           </ul>
-
-          //form
-            <form className='create-room'
-                  onSubmit={(e) =>
-                  { e.preventDefault();
-                  this.createRoom(this.state.name) }}
-            >
-              <h3>Creat chatroom</h3>
-              //chat button
-              <input type='text'
-                placeholder='room name'
-                onChange={(e) => this.handleChange(e)}>
-              </input>
-                <input type='submit' value="create"></input>
-            </form>
-
-
           </div>
     );
   }
