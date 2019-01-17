@@ -4,9 +4,16 @@ class User extends Component {
     constructor(props){
       super(props);
 
-      // state goes here
-      const this.provider = new this.props.firebase.auth.GoogleAuthProvider();
+      this.provider = new this.props.firebase.auth.GoogleAuthProvider();
 
+    }
+
+    signIn(){
+      this.props.firebase.auth().signInWithPopup( this.provider )
+    }
+
+    signOut(){
+      this.props.firebase.auth().signOut();
     }
 
 
@@ -14,7 +21,9 @@ class User extends Component {
       return(
         <div>
           <h3>Sign in</h3>
-            <input type="submit" onClick={this.props.firebase.auth().signInWithPopup( this.provider );}></input>
+            <input type="submit" onClick={this.signIn()}></input>
+          <h3>Sign out</h3>
+            <input type="submit" onClick={this.signOut()}></input>
 
         </div>
       );
