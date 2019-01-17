@@ -57,7 +57,7 @@ class RoomList extends Component{
             {room.name}
             </li>)
           }
-          
+
           </div>
     );
   }
