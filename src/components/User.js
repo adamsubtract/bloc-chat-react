@@ -4,12 +4,11 @@ class User extends Component {
     constructor(props){
       super(props);
 
-      this.provider = new this.props.firebase.auth.GoogleAuthProvider();
-
     }
 
     signIn(){
-      this.props.firebase.auth().signInWithPopup( this.provider )
+      const provider = new this.props.firebase.auth.GoogleAuthProvider();
+      this.props.firebase.auth().signInWithPopup( provider );
     }
 
     signOut(){
