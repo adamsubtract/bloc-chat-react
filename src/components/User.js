@@ -6,6 +6,12 @@ class User extends Component {
 
     }
 
+    componentDidMount(){
+      this.props.firebase.auth().onAuthStateChanged( user => {
+        this.props.setUser(user);
+      });
+    }
+
     signIn(){
       const provider = new this.props.firebase.auth.GoogleAuthProvider();
       this.props.firebase.auth().signInWithPopup( provider );
