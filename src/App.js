@@ -22,7 +22,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activeRoom: ''
+      activeRoom: '',
+      user: ''
     };
 
   }
@@ -30,6 +31,10 @@ class App extends Component {
   setActiveRoom(room){
     this.setState({ activeRoom: room});
     console.log(this.state.activeRoom);
+  }
+
+  setUser(name){
+    this.setState({ user: name });
   }
 
   render() {
@@ -45,7 +50,10 @@ class App extends Component {
         firebase={firebase}
         activeRoom={this.state.activeRoom}/>
 
-        <User firebase={firebase}/>
+        <User
+        firebase={firebase}
+        user={this.props.user}
+        setUser={(name) => this.props.setUser(name)}/>
       </div>
     );
   }
