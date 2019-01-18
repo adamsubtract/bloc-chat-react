@@ -52,8 +52,8 @@ class App extends Component {
 
         <User
         firebase={firebase}
-        user={this.props.user}
-        setUser={(name) => this.props.setUser(name)}/>
+        user={this.state.user}
+        setUser={(name) => this.setUser(name)}/>
       </div>
     );
   }

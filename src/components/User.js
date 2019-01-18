@@ -1,50 +1,47 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 
 class User extends Component {
-    constructor(props){
-      super(props);
+  constructor(props) {
+    super(props);
+  }
 
-    }
+  componentDidMount() {
+    this.props.firebase.auth().onAuthStateChanged(user => {
+      console.log(`componentDidMount -> User.js: The value of user is: ${user}`);
+      this.props.setUser(user);
+    });
+  }
 
-    componentDidMount(){
-      this.props.firebase.auth().onAuthStateChanged( user => {
-        this.props.setUser(user);
-      });
-    }
+  signIn() {
+    const provider = new this.props.firebase.auth.GoogleAuthProvider();
+    this.props.firebase.auth().signInWithPopup(provider);
+  }
 
-    displayUserName(){
-      if(!this.props.user) {
-            return "Guest";
-        } else {
-            return this.props.user;
-        }
-    }
+  signOut() {
+    this.props.firebase.auth().signOut();
+  }
 
-    signIn(){
-      const provider = new this.props.firebase.auth.GoogleAuthProvider();
-      this.props.firebase.auth().signInWithPopup(provider);
-    }
-
-    signOut(){
-      this.props.firebase.auth().signOut();
-    }
-
-
-    render(){
+  displayGuest(user) {
+    if(user && user.displayName){
       return(
-        <div>
-          <h2>Welcome, {this.displayUserName()}</h2>
-          <h3>Sign in</h3>
-            <input type="submit" onClick={this.signIn()}></input>
-          <h3>Sign out</h3>
-            <input type="submit" onClick={this.signOut()}></input>
-
-        </div>
+        <h3>Welcome {user.displayName}!</h3>
+      );
+    } else {
+      return(
+        <ul><h3>Welcome, Guest !</h3></ul>
       );
     }
+  }
 
-
-
+  render() {
+    return(
+      <div>
+        <h3>{ this.displayGuest(this.props.user) }</h3>
+        <button onClick={ () => this.signIn() }>Sign In</button>
+        <button onClick={ () => this.signOut() }>Sign Out</button>
+      </div>
+    );
+  }
 }
 
 export default User;
