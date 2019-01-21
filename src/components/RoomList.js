@@ -35,7 +35,15 @@ class RoomList extends Component{
     return (
 
           <div className="App">
-
+              <h3>Chatrooms</h3>
+              { this.state.rooms.map( (room, index) =>
+                <li className='room'
+                    key={index}
+                    onClick={() => this.props.setActiveRoom(room)}
+                >
+                {room.name}
+                </li>)
+              }
               <form className='create-room'
                 onSubmit={(e) =>
                 { e.preventDefault(); this.createRoom(this.state.name) }}>
@@ -48,14 +56,6 @@ class RoomList extends Component{
               </form>
 
 
-          { this.state.rooms.map( (room, index) =>
-            <li className='room'
-                key={index}
-                onClick={() => this.props.setActiveRoom(room)}
-            >
-            {room.name}
-            </li>)
-          }
 
           </div>
     );
