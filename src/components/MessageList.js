@@ -44,10 +44,11 @@ class MessageList extends Component{
               )}
          </ul>
 
+         <h3>Messages</h3>
          <form className='create-message' onSubmit={(e) => this.handleSubmit(e)}>
-           <input type='text' placeholder='Write your messages ...' onChange={(e) => this.handleChange(e)}> </input>
+           <input type='text' placeholder='Write your messages ...' onChange={(e) => this.handleChange(e)}></input>
            <input type='submit' ></input>
-          </form>
+        </form>
        </div>
       );
   }
