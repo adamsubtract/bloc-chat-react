@@ -46,8 +46,14 @@ class MessageList extends Component{
          </ul>
 
          <form className='create-message'
+<<<<<<< HEAD
            onSubmit={(e) => this.handleSubmit(e)}>
          <h3>messages</h3>
+=======
+           onSubmit={(e) =>
+           { e.preventDefault(); this.createMessage(this.state.newMessage) }}>
+         <h3>Creat chatroom</h3>
+>>>>>>> 2807edda593bcc1957393403156316e0ff5eb1e1
            <input type='text'
              placeholder='Write your messages ...'
              onChange={(e) => this.handleChange(e)}>
