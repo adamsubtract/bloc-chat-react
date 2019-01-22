@@ -13,6 +13,7 @@ class MessageList extends Component{
         // Set up our Reference to our messages Table in Firebase
         this.messagesRef = this.props.firebase.database().ref('messages');
 
+
     }
 
     componentDidMount(){
@@ -26,7 +27,10 @@ class MessageList extends Component{
 
   handleSubmit(e){
     e.preventDefault();
-    console.log(this.state.userName);
+    console.log(this.props.user.displayName);
+    console.log(this.props.activeRoom);
+    console.log(this.state.newMessage);
+    console.log(this.props.firebase.database.ServerValue.TIMESTAMP);
   }
 
   handleChange(e){
