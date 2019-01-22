@@ -33,7 +33,6 @@ class MessageList extends Component{
     this.setState({ newMessage: e.target.value });
   }
 
-
     render(){
       return(
         <div>
@@ -45,18 +44,10 @@ class MessageList extends Component{
               )}
          </ul>
 
-         <form className='create-message'
-           onSubmit={(e) => this.handleSubmit(e)}>
-         <h3>messages</h3>
-           onSubmit={(e) =>
-           { e.preventDefault(); this.createMessage(this.state.newMessage) }}>
-         <h3>Creat chatroom</h3>
-           <input type='text'
-             placeholder='Write your messages ...'
-             onChange={(e) => this.handleChange(e)}>
-           </input>
-             <input type='submit' ></input>
-         </form>
+         <form className='create-message' onSubmit={(e) => this.handleSubmit(e)}>
+           <input type='text' placeholder='Write your messages ...' onChange={(e) => this.handleChange(e)}> </input>
+           <input type='submit' ></input>
+          </form>
        </div>
       );
   }
