@@ -24,8 +24,9 @@ class MessageList extends Component{
      });
   }
 
-  createMessage(msg){
-    this.messagesRef.push({ newMessage: msg });
+  handleSubmit(e){
+    e.preventDefault();
+    console.log(this.state.userName);
   }
 
   handleChange(e){
@@ -36,10 +37,6 @@ class MessageList extends Component{
     render(){
       return(
         <div>
-         <form className='create-message'
-           onSubmit={(e) =>
-           { e.preventDefault(); this.createMessage(this.state.newMessage) }}>
-         <h3>Messages</h3>
          <ul>
              { this.state.messages.filter(message => message.roomid == this.props.activeRoom.key).map( (message, index) =>
                    <li className='message' key={index}>
@@ -47,11 +44,15 @@ class MessageList extends Component{
                    </li>
               )}
          </ul>
+
+         <form className='create-message'
+           onSubmit={(e) => this.handleSubmit(e)}>
+         <h3>messages</h3>
            <input type='text'
-             placeholder='Write your messages here...'
+             placeholder='Write your messages ...'
              onChange={(e) => this.handleChange(e)}>
            </input>
-           <input type='submit' value="Send"></input>
+             <input type='submit' ></input>
          </form>
        </div>
       );

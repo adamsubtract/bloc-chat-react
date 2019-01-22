@@ -23,7 +23,7 @@ class App extends Component {
 
     this.state = {
       activeRoom: '',
-      user: ''
+      userName: '',
     };
 
   }
@@ -33,8 +33,8 @@ class App extends Component {
     console.log(this.state.activeRoom);
   }
 
-  setUser(name){
-    this.setState({ user: name });
+  setUserName(name){
+    this.setState({ userName: name });
   }
 
   render() {
@@ -48,12 +48,13 @@ class App extends Component {
 
         <MessageList
         firebase={firebase}
+        userName={this.state.userName}
         activeRoom={this.state.activeRoom}/>
 
         <User
         firebase={firebase}
-        user={this.state.user}
-        setUser={(name) => this.setUser(name)}/>
+        userName={this.state.userName}
+        setUser={(name) => this.setUserName(name)}/>
       </div>
     );
   }

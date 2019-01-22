@@ -28,7 +28,7 @@ class User extends Component {
       );
     } else {
       return(
-        <ul><h3>Welcome, Guest !</h3></ul>
+        <ul><h3>Welcome, Guest!</h3></ul>
       );
     }
   }
@@ -36,7 +36,7 @@ class User extends Component {
   render() {
     return(
       <div>
-        <h3>{ this.displayGuest(this.props.user) }</h3>
+        <h3>{ this.displayGuest(this.props.userName) }</h3>
         <button onClick={ () => this.signIn() }>Sign In</button>
         <button onClick={ () => this.signOut() }>Sign Out</button>
       </div>
