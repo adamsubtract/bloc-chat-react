@@ -10,10 +10,10 @@ class MessageList extends Component{
          newMessage: ''
        };
 
-        // Set up our Reference to our messages Table in Firebase
-        this.messagesRef = this.props.firebase.database().ref('messages');
+      // Set up our Reference to our messages Table in Firebase
+      this.messagesRef = this.props.firebase.database().ref('messages');
 
-
+      this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount(){
@@ -26,33 +26,50 @@ class MessageList extends Component{
   }
 
   handleSubmit(e){
-    e.preventDefault();
-    console.log(this.props.user.displayName);
-    console.log(this.props.activeRoom);
-    console.log(this.state.newMessage);
-    console.log(this.props.firebase.database.ServerValue.TIMESTAMP);
-  }
+      e.preventDefault();
+      console.log(this.props.user.displayName);
+      console.log(this.props.activeRoom.key);
+      console.log(this.state.newMessage);
+      console.log(this.props.firebase.database.ServerValue.TIMESTAMP);
 
-  handleChange(e){
-    this.setState({ newMessage: e.target.value });
-  }
+      const date = new Date(this.props.firebase.database.ServerValue.TIMESTAMP * 1000);
+
+      this.messagesRef.push({
+      content: this.state.newMessage,
+      date: date,
+      roomid: this.props.activeRoom.key,
+      username: this.props.user.displayName});
+
+    }
+
+    handleChange(e){
+      this.setState({newMessage: e.target.value});
+    }
+
 
     render(){
+      let chatbox
+      if(this.props.activeRoom){
+       chatbox =  <form className='create-message' onSubmit={(e) => this.handleSubmit(e)}>
+                        <input type='text'
+                               placeholder='Write your messages ...'
+                               value={this.state.newMessage}
+                               onChange={this.handleChange}></input>
+                        <input type='submit' ></input>
+                   </form>
+      }
       return(
         <div>
          <ul>
              { this.state.messages.filter(message => message.roomid == this.props.activeRoom.key).map( (message, index) =>
                    <li className='message' key={index}>
-                       {message.content}
+                       {message.content} {message.username} {message.date}
                    </li>
               )}
          </ul>
 
          <h3>Messages</h3>
-         <form className='create-message' onSubmit={(e) => this.handleSubmit(e)}>
-           <input type='text' placeholder='Write your messages ...' onChange={(e) => this.handleChange(e)}></input>
-           <input type='submit' ></input>
-        </form>
+         {chatbox}
        </div>
       );
   }
